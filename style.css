@@ -101,7 +101,8 @@ html, #container, .inner {
   height: 100%;
 }
 html {
-  background:url(bgs/city.jpg) center center no-repeat fixed;
+  /*background:url(bgs/bg_net_dark.jpg) center center no-repeat fixed;*/
+  background:rgba(1,1,1,0.9);
   background-size:cover;
 }
 body {
