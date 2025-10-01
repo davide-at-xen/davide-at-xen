@@ -119,16 +119,17 @@ body {
   /*margin:25px auto;*/
 }
 header, #content{
-  background: rgba(0,0,0,0);
+  /*background: rgba(0,0,0,0);*/
   color:#FFFFFF;
   margin-bottom: 1%;
 }
 
 footer {
-  background: rgba(0,0,0,.7);
+  /*background: rgba(0,0,0,.7);*/
   position:absolute;
   bottom:0;
-  width:100%
+  width:99%;
+  left:1%;
 }
 
 iframe {
@@ -156,7 +157,7 @@ ul li.linkeding_logo_list_element {
   width: 100%;
   margin: 0;
   padding: 0;
-  background-color: #000000aa;
+  /*background-color: #000000aa;*/
 }
 ul.main-menu {
   list-style: none;
