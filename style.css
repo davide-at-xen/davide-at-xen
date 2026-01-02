@@ -2,24 +2,11 @@
  * Typography & Text styles
  */
 
-/* html is set to 62.5% so that all the REM measurements are based on 10px sizing. So basically 1.5rem = 15px */
-html {
-  font-size: 62.5%;
-}
-
 .raleway-<uniquifier> {
   font-family: "Raleway", sans-serif;
   font-optical-sizing: auto;
   font-weight: 200;
   font-style: normal;
-}
-
-body {
-  font-size: 1.5em;
-  line-height: 1.6;
-  font-weight: 400;
-  font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #FFFFFF;
 }
 
 /**
@@ -33,7 +20,6 @@ a {
 a:focus {
   outline: thin dotted;
 }
-
 small {
   font-size: 75%;
 }
@@ -101,43 +87,44 @@ blockquote p:last-child {
  * Layout styles
  */
 
-/* Full size background image */
-html, #container, .inner { 
-  background-color:transparent;
-  display: flex;
-  flex-flow: column;
-  height: 100%;
-}
-html {
-  /*background:url(bgs/bg_net_dark.jpg) center center no-repeat fixed;*/
+html{ 
+  /*background-color:transparent;
+  background:url(bgs/bg_net_dark.jpg) center center no-repeat fixed;
+  background-size:cover;*/
+  height:100%;
+  margin:0;
   background:rgba(1,1,1,0.9);
-  background-size:cover;
+  font-size: 62.5%;
 }
+
 body {
-  height: 100%;
-  padding-top:4rem;
+  font-size: 1.5em;
+  line-height: 1.6;
+  font-weight: 400;
+  font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #FFFFFF;
+  height:100%;
+  margin:0;
+  /*padding-top:4rem;*/
   /*margin:25px auto;*/
 }
-header, #content{
+.content{
   /*background: rgba(0,0,0,0);*/
   color:#FFFFFF;
-  margin-bottom: 1%;
+  min-height:100%;
+  display:flex;
+  flex-direction:column;
 }
+
+main{flex:1}
 
 footer {
-  /*background: rgba(0,0,0,.7);*/
+  /*background: rgba(0,0,0,.7);
   position:absolute;
-  bottom:0;
-  width:99%;
-  left:1%;
-}
-
-iframe {
-  max-width:100%;
-}
-
-header.centered {
-  text-align: center;
+  bottom:0;*/
+  /*width:98%;
+  left:2%;*/
+  padding:8px;
 }
 
 /*
@@ -150,6 +137,15 @@ ul li.linkeding_logo_list_element {
 }
 */
 
+header {
+  /*background: rgba(0,0,0,0);*/
+  color:#FFFFFF;
+  margin-bottom: 1%;
+}
+header.centered {
+  text-align: center;
+}
+
 /* Menu Links */
 .main-menu {
   position: fixed;
@@ -157,7 +153,6 @@ ul li.linkeding_logo_list_element {
   width: 100%;
   margin: 0;
   padding: 0;
-  /*background-color: #000000aa;*/
 }
 ul.main-menu {
   list-style: none;
@@ -168,13 +163,6 @@ ul.main-menu {
   justify-content: right;
   height: 5%;
 }
-
-.big_logo_image {
-  position:center;
-  margin:auto;
-  max-width: 320px;
-}
-
 ul.main-menu li a {
   margin-right:20px;
   font-size:2.4rem;
@@ -189,10 +177,13 @@ ul.main-menu li a.active {
   border-bottom-color:#EF6D3D;
 }
 
+#big_logo_image {
+  position:center;
+  margin:auto;
+  max-width: 320px;
+}
+
 /* Utility classes */
 .hide {
   display:none;
-}
-.show {
-  display:block;
 }
