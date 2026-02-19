@@ -184,16 +184,22 @@ ul li.linkeding_logo_list_element {
   width: 100%;
   margin: 0;
   padding: 0;
-  /*background-color: #000000aa;*/
+  background-color: transparent;
+  z-index: 1000;
+  transition: background-color 0.3s ease, border-bottom 0.3s ease;
+  border-bottom: 1px solid transparent;
 }
-ul.main-menu {
+.main-menu.scrolled {
+  background-color: rgba(1, 1, 1, 0.9);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+ul.main-menu-list {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 0.5rem 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: right;
-  height: 5%;
 }
 
 .big_logo_image {
@@ -202,16 +208,18 @@ ul.main-menu {
   max-width: 320px;
 }
 
-ul.main-menu li a {
+ul.main-menu-list li a {
   margin-right:20px;
+  padding: 0.5rem 0;
   font-size:2.4rem;
   border-bottom: solid transparent 3px;
   color:#cfd2da;
+  display: block;
 }
-ul.main-menu li a:hover {
+ul.main-menu-list li a:hover {
   color:#FFFFFF;
 }
-ul.main-menu li a.active {
+ul.main-menu-list li a.active {
   color:#FFFFFF;
   border-bottom-color:#EF6D3D;
 }
