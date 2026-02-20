@@ -142,7 +142,37 @@ main#content {
   justify-content: center;
   align-items: center;
   padding-top: 0;
-  padding-bottom: 0;
+  padding-bottom: 5vh; /* Shifts content upwards by approx 5% of viewport height */
+}
+.about-content {
+  text-align: center;
+  width: 100%;
+}
+.about-content h1 {
+  white-space: nowrap;
+  font-size: clamp(3rem, 10vw, 6rem);
+}
+.about-content h2 {
+  font-size: clamp(1.5rem, 5vw, 3rem);
+}
+.about-content h4 {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+}
+.tagline-wrapper {
+  display: inline-block;
+}
+.about-separator {
+  width: 100%;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 2%;
+}
+@media (max-width: 768px) {
+  .about-content {
+    padding-left: 10%;
+    padding-right: 10%;
+    box-sizing: border-box;
+  }
 }
 .content-region.show {
   display: flex;
