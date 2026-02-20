@@ -25,5 +25,14 @@
     // $('#content').load(region.slice(1) + '.html')
     
   });
+
+  // Handle scroll to add/remove the 'scrolled' class on the navigation bar
+  $(window).on('scroll', function() {
+    if ($(window).scrollTop() > 10) {
+      $('.main-menu').addClass('scrolled');
+    } else {
+      $('.main-menu').removeClass('scrolled');
+    }
+  });
   
 })(jQuery);
