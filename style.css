@@ -156,7 +156,7 @@ h1, h2, h3, h4, h5, h6 {
   gap: 10px;
   color: #ffffff;
   font-family: var(--font);
-  font-weight: 500;
+  font-weight: 300;
   font-size: 18px;
   text-decoration: none;
   flex-shrink: 0;
@@ -234,7 +234,7 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 80px 24px;
+  padding: 40px 24px 80px;
   overflow: hidden;
 }
 
@@ -264,8 +264,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-logo {
-  width: 280px;
-  height: 280px;
+  width: 320px;
+  height: 320px;
   margin: 0 auto 32px;
   object-fit: contain;
   opacity: 0.9;
