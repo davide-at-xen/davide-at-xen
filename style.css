@@ -653,6 +653,12 @@ section {
   font-weight: 500;
 }
 
+/* News CTA on landing page */
+.news-cta {
+  margin-top: 40px;
+  text-align: center;
+}
+
 /* --- Contact Section --- */
 #contact {
   text-align: center;
@@ -791,6 +797,21 @@ footer {
   margin-top: 8px;
   font-size: 13px;
   color: var(--text-dim);
+}
+
+/* Page-level glow wrapper — sits behind content, not clipped by sections */
+.page-glow-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: visible;
+}
+.page-glow-wrapper .glow {
+  position: absolute;
 }
 
 /* ============================================================

@@ -42,16 +42,17 @@
   var allNavLinks = document.querySelectorAll('.nav-links a');
   var path = window.location.pathname;
 
-  // On sub-pages (e.g. /careers/, /careers/privacy/), highlight the matching nav link
+  // On sub-pages, highlight the matching nav link by text content
   if (path.indexOf('/careers') === 0 || path.indexOf('careers/') !== -1) {
     allNavLinks.forEach(function (a) {
-      var href = a.getAttribute('href');
-      if (href && (href === '/careers/' || href === '/careers' || href === './' || href === '../' ||
-          href.indexOf('careers/') !== -1 || href.indexOf('careers') === href.length - 7)) {
-        // Only mark the Careers link active, not other links
-        if (a.textContent.trim() === 'Careers') {
-          a.classList.add('active');
-        }
+      if (a.textContent.trim() === 'Careers') {
+        a.classList.add('active');
+      }
+    });
+  } else if (path.indexOf('/news') === 0 || path.indexOf('news/') !== -1) {
+    allNavLinks.forEach(function (a) {
+      if (a.textContent.trim() === 'News') {
+        a.classList.add('active');
       }
     });
   } else {
