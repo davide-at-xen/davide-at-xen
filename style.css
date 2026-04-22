@@ -519,6 +519,11 @@ section {
   border-bottom: 1px solid var(--border);
 }
 
+#team .section-intro,
+#technology .section-intro {
+  max-width: 100%;
+}
+
 .team-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -544,6 +549,13 @@ section {
   background: linear-gradient(135deg, rgba(239, 109, 61, 0.15), rgba(239, 109, 61, 0.05));
   border: 1px solid var(--border-accent);
   margin: 0 auto 20px;
+  overflow: hidden;
+}
+
+.team-photo-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .team-card h3 {

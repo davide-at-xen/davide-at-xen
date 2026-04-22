@@ -188,6 +188,16 @@
 
       // Build exclusion zones from hero content elements
       var exclZones = [];
+      var navEl = document.getElementById('navbar');
+      if (navEl) {
+        var nr = navEl.getBoundingClientRect();
+        exclZones.push({
+          x1: 0,
+          y1: 0,
+          x2: w,
+          y2: nr.bottom - rect.top + exclPad
+        });
+      }
       var logoEl = document.querySelector('.hero-logo');
       if (logoEl) {
         var lr = logoEl.getBoundingClientRect();
