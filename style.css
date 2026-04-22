@@ -6,9 +6,9 @@
 /* --- Custom Properties --- */
 :root {
   --bg: #0a0a0a;
-  --bg-subtle: #111111;
-  --bg-card: #161616;
-  --bg-card-hover: #1c1c1c;
+  --bg-subtle: #181818;
+  --bg-card: #1e1e1e;
+  --bg-card-hover: #242424;
   --text: #e8e8e8;
   --text-muted: #999999;
   --text-dim: #666666;
@@ -16,7 +16,7 @@
   --accent-hover: #f4845f;
   --accent-glow: rgba(239, 109, 61, 0.15);
   --accent-glow-strong: rgba(239, 109, 61, 0.25);
-  --border: rgba(255, 255, 255, 0.08);
+  --border: rgba(255, 255, 255, 0.10);
   --border-accent: rgba(239, 109, 61, 0.3);
   --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-display: 'Cormorant Garamond', 'Georgia', serif;
@@ -52,10 +52,10 @@ body {
   flex-direction: column;
   /* Ambient orange/okra tinted background washes */
   background-image:
-    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(239, 109, 61, 0.08) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 100% 30%, rgba(200, 100, 40, 0.06) 0%, transparent 50%),
-    radial-gradient(ellipse 50% 50% at 0% 60%, rgba(239, 130, 70, 0.05) 0%, transparent 50%),
-    radial-gradient(ellipse 70% 40% at 70% 100%, rgba(180, 80, 30, 0.06) 0%, transparent 50%);
+    radial-gradient(ellipse 50% 60% at 0% 10%, rgba(239, 109, 61, 0.11) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 100% 30%, rgba(200, 100, 40, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 60% at 0% 60%, rgba(239, 130, 70, 0.07) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 50% at 100% 85%, rgba(180, 80, 30, 0.08) 0%, transparent 50%);
 }
 
 /* Film grain overlay — tiled noise texture (replaces expensive SVG feTurbulence) */
@@ -234,7 +234,7 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: var(--section-padding) 24px;
+  padding: 80px 24px;
   overflow: hidden;
 }
 
@@ -264,9 +264,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-logo {
-  width: 360px;
-  height: 360px;
-  margin: 0 auto 40px;
+  width: 280px;
+  height: 280px;
+  margin: 0 auto 32px;
   object-fit: contain;
   opacity: 0.9;
 }
@@ -276,14 +276,14 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: -0.03em;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 .hero-subtitle {
   font-size: clamp(16px, 1.8vw, 20px);
   color: var(--text-muted);
   max-width: 640px;
-  margin: 0 auto 40px;
+  margin: 0 auto 32px;
   line-height: 1.7;
   font-weight: 300;
 }
@@ -498,7 +498,7 @@ section {
 /* --- Team Section --- */
 #team {
   background-color: var(--bg-subtle);
-  background-image: radial-gradient(ellipse 40% 50% at 10% 80%, rgba(220, 110, 50, 0.05) 0%, transparent 60%);
+  background-image: radial-gradient(ellipse 40% 50% at 10% 80%, rgba(220, 110, 50, 0.06) 0%, transparent 60%);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
 }
@@ -616,13 +616,6 @@ section {
 }
 
 /* --- News Section --- */
-#news {
-  background-color: var(--bg-subtle);
-  background-image: radial-gradient(ellipse 50% 50% at 80% 60%, rgba(239, 109, 61, 0.05) 0%, transparent 60%);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-
 .news-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -712,6 +705,10 @@ section {
 /* --- Contact Section --- */
 #contact {
   text-align: center;
+  background-color: var(--bg-subtle);
+  background-image: radial-gradient(ellipse 50% 50% at 80% 40%, rgba(239, 109, 61, 0.06) 0%, transparent 60%);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
 #contact .section-intro {
   margin-left: auto;
@@ -721,6 +718,10 @@ section {
 #contact-info {
   padding-top: 8px;
   padding-bottom: 8px;
+}
+
+#locations {
+  padding-top: 48px;
 }
 
 .contact-links {
@@ -841,6 +842,7 @@ section {
 /* --- Footer --- */
 footer {
   margin-top: auto;
+  background-color: var(--bg);
   border-top: 1px solid var(--border);
   padding: 40px 0;
 }
@@ -890,11 +892,11 @@ footer {
 /* Page hero — used on standalone pages instead of the main hero */
 .page-hero {
   padding-top: calc(var(--nav-height) + 80px);
-  padding-bottom: 24px;
+  padding-bottom: 0;
 }
 
 #positions {
-  padding-top: 24px;
+  padding-top: 0;
 }
 
 #all-news {
@@ -1036,9 +1038,9 @@ footer {
   }
 
   .hero-logo {
-    width: 240px;
-    height: 240px;
-    margin-bottom: 28px;
+    width: 200px;
+    height: 200px;
+    margin-bottom: 24px;
   }
 
   .footer-container {
