@@ -1034,6 +1034,10 @@ footer {
     display: flex;
   }
 
+  #network-canvas {
+    display: none;
+  }
+
   .nav-links {
     position: fixed;
     top: 0;

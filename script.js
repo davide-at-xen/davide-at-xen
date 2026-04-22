@@ -150,7 +150,7 @@
 
   // --- Interactive Node Network (hero canvas) ---
   var canvas = document.getElementById('network-canvas');
-  if (canvas) {
+  if (canvas && window.innerWidth > 768) {
     var ctx = canvas.getContext('2d');
     var dpr = window.devicePixelRatio || 1;
     var nodes = [];
@@ -165,9 +165,9 @@
     // Colors
     var IDLE_NODE = 'rgba(255, 255, 255, 0.15)';
     var IDLE_EDGE = 'rgba(255, 255, 255, 0.05)';
-    var ACTIVE_NODE = '#EF6D3D';
-    var ACTIVE_EDGE = 'rgba(239, 109, 61, 0.3)';
-    var ACTIVE_GLOW = 'rgba(239, 109, 61, 0.4)';
+    var ACTIVE_NODE = '#C4522A';
+    var ACTIVE_EDGE = 'rgba(196, 82, 42, 0.3)';
+    var ACTIVE_GLOW = 'rgba(196, 82, 42, 0.4)';
 
     function initCanvas() {
       var rect = canvas.getBoundingClientRect();
@@ -320,7 +320,7 @@
 
         if (edgeActive) {
           var intensity = Math.max(aActive || 0, bActive || 0);
-          ctx.strokeStyle = 'rgba(239, 109, 61, ' + (0.08 + intensity * 0.25) + ')';
+          ctx.strokeStyle = 'rgba(196, 82, 42, ' + (0.08 + intensity * 0.25) + ')';
           ctx.lineWidth = 0.5 + intensity * 1;
         } else {
           ctx.strokeStyle = IDLE_EDGE;
