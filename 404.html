@@ -1,58 +1,58 @@
 <!doctype html>
-<html>
-  <!-- HEAD -->
-  <head>
-    <!-- Page setup -->
-    <meta charset="utf-8">
-    <title>Page not found - Xen Quantum Ltd</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes"/>
-    <link rel="icon" type="image/png" href="logos/logo.png">
-  
-    <!-- Stylesheets -->
-    <!-- Reset default styles and add support for google fonts -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet" type="text/css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-
-    <!-- Custom styles -->
-    <link href="style.css" rel="stylesheet" type="text/css" />
-
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-
-    <!-- Want to add Bootstrap? -->
-    <!-- Visit: https://getbootstrap.com/docs/4.3/getting-started/introduction/ -->
-
-  </head>
-
-  <!-- BODY -->
-  <body>
-    <div id="container">
-      <div class="inner">
-        <div id="content"> 
-
-
-            <div style="text-align: center;">
-              <div class="big_logo_image"><img src="logos/logo_2.png", width="100%", height="auto"></div>
-              <h1>404</h1>
-              <h2>This page doesn't exist</h2>
-              <hr style="width:50%;text-align:center;margin-top:2%;margin-bottom:2%"> 
-              <h4>Our homepage is <a href="http://xenquantum.com">here</a></h4>
-            </div>
-
-
-        </div> 
-      </div>
-    </div>
-
-    <footer>
-      <p>Xen Quantum Ltd, 2026, all rights reserved.</p>
-    </footer>
-
-    <!-- Load additional JS scripts here -->
-    <script type="text/javascript" src="script.js"></script>
-
-  </body>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Page Not Found — Xen Quantum</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="logos/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+  <style>
+    .error-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 24px;
+    }
+    .error-page img {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 32px;
+      opacity: 0.8;
+    }
+    .error-page h1 {
+      font-size: 72px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      margin-bottom: 8px;
+      color: var(--accent);
+    }
+    .error-page h2 {
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+  </style>
+</head>
+<body>
+  <svg style="position:absolute;width:0;height:0" aria-hidden="true">
+    <filter id="noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.80" numOctaves="4" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+  </svg>
+  <div class="grain-overlay" aria-hidden="true"></div>
+  <div class="error-page">
+    <img src="logos/logo_2.png" alt="Xen Quantum">
+    <h1>404</h1>
+    <h2>This page doesn't exist</h2>
+    <a href="/" class="btn btn-primary">Back to Homepage</a>
+  </div>
+</body>
 </html>

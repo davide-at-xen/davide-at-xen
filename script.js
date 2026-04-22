@@ -1,29 +1,84 @@
-// Wait for the document to load before running the script 
-(function ($) {
-  
-  // We use some Javascript and the URL #fragment to hide/show different parts of the page
-  // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#Linking_to_an_element_on_the_same_page
-  $(window).on('load hashchange', function(){
-    
-    // First hide all content regions, then show the content-region specified in the URL hash 
-    // (or if no hash URL is found, default to first menu item)
-    $('.content-region').hide();
-    
-    // Remove any active classes on the main-menu
-    $('.main-menu a').removeClass('active');
-    var region = location.hash.toString() || $('.main-menu a:first').attr('href');
-    
-    // Now show the region specified in the URL hash
-    $(region).show();
-    
-    // Highlight the menu link associated with this region by adding the .active CSS class
-    $('.main-menu a[href="'+ region +'"]').addClass('active'); 
+// Xen Quantum — Site Scripts (vanilla JS, no dependencies)
 
-    // Alternate method: Use AJAX to load the contents of an external file into a div based on URL fragment
-    // This will extract the region name from URL hash, and then load [region].html into the main #content div
-    // var region = location.hash.toString() || '#first';
-    // $('#content').load(region.slice(1) + '.html')
-    
-  });
-  
-})(jQuery);
+(function () {
+  'use strict';
+
+  // --- Sticky navbar background on scroll ---
+  var navbar = document.getElementById('navbar');
+  if (!navbar) return;
+
+  function updateNavbar() {
+    if (window.scrollY > 40) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  }
+  window.addEventListener('scroll', updateNavbar, { passive: true });
+  updateNavbar();
+
+  // --- Mobile menu toggle ---
+  var toggle = document.querySelector('.nav-toggle');
+  var navLinks = document.querySelector('.nav-links');
+
+  if (toggle && navLinks) {
+    toggle.addEventListener('click', function () {
+      var isOpen = navLinks.classList.toggle('open');
+      toggle.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Close mobile menu when a link is clicked
+    navLinks.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        navLinks.classList.remove('open');
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  // --- Active nav link highlighting ---
+  var allNavLinks = document.querySelectorAll('.nav-links a');
+  var path = window.location.pathname;
+
+  // On sub-pages (e.g. /careers/, /careers/privacy/), highlight the matching nav link
+  if (path.indexOf('/careers') === 0 || path.indexOf('careers/') !== -1) {
+    allNavLinks.forEach(function (a) {
+      var href = a.getAttribute('href');
+      if (href && (href === '/careers/' || href === '/careers' || href === './' || href === '../' ||
+          href.indexOf('careers/') !== -1 || href.indexOf('careers') === href.length - 7)) {
+        // Only mark the Careers link active, not other links
+        if (a.textContent.trim() === 'Careers') {
+          a.classList.add('active');
+        }
+      }
+    });
+  } else {
+    // On the main page, highlight based on scroll position
+    var sections = document.querySelectorAll('section[id]');
+    var hashNavItems = document.querySelectorAll('.nav-links a[href^="#"]');
+
+    function highlightNav() {
+      var scrollPos = window.scrollY + window.innerHeight / 3;
+
+      sections.forEach(function (section) {
+        var top = section.offsetTop;
+        var height = section.offsetHeight;
+        var id = section.getAttribute('id');
+
+        if (scrollPos >= top && scrollPos < top + height) {
+          hashNavItems.forEach(function (a) {
+            a.classList.remove('active');
+            if (a.getAttribute('href') === '#' + id) {
+              a.classList.add('active');
+            }
+          });
+        }
+      });
+    }
+
+    window.addEventListener('scroll', highlightNav, { passive: true });
+    highlightNav();
+  }
+})();

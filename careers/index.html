@@ -1,11 +1,109 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="refresh" content="0;url=https://xenquantum.com/#careers">
-    <link rel="canonical" href="https://xenquantum.com/#careers">
-    <script>window.location.replace("https://xenquantum.com/#careers");</script>
-  </head>
-  <body>
-    <p>Redirecting… <a href="https://xenquantum.com/#careers">Continue</a></p>
-  </body>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Careers — Xen Quantum</title>
+  <meta name="description" content="Join Xen Quantum. We're hiring engineers and scientists to build the future of quantum-secure communication.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="../logos/logo.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link href="../style.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- SVG noise texture for film grain overlay -->
+  <svg style="position:absolute;width:0;height:0" aria-hidden="true">
+    <filter id="noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.80" numOctaves="4" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+  </svg>
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="../" class="nav-logo">
+        <img src="../logos/logo_2.png" alt="Xen Quantum" class="nav-logo-img">
+        <span class="nav-logo-text">Xen Quantum</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="../#about">About</a></li>
+        <li><a href="../#technology">Technology</a></li>
+        <li><a href="../#team">Team</a></li>
+        <li><a href="./">Careers</a></li>
+        <li><a href="../#news">News</a></li>
+        <li><a href="../#contact" class="nav-cta">Get in Touch</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Careers Hero -->
+  <section id="careers-hero" class="page-hero">
+    <div class="glow glow--careers"></div>
+    <div class="container">
+      <div class="section-label">Careers</div>
+      <h1 class="section-title">Join us</h1>
+      <p class="section-intro">We're building a world-class team to tackle one of the most important challenges in cybersecurity. If you want to work at the frontier of quantum technology, we'd love to hear from you.</p>
+    </div>
+  </section>
+
+  <!-- Open Positions -->
+  <section id="positions">
+    <div class="container">
+      <h2 class="section-title">Open positions</h2>
+      <div class="careers-list">
+        <div class="career-card">
+          <div class="career-header">
+            <h3>Quantum Communication System Developer</h3>
+            <span class="career-tag">Engineering</span>
+          </div>
+          <p>Join as one of our first technical hires and play a defining role in shaping both our technology and engineering culture. This is a hands-on role at the intersection of quantum optics, photonics, cryptography, and system engineering — spanning laboratory development, system integration, and early field deployment with customers.</p>
+          <a href="https://xenquantum.sharepoint.com/:b:/g/IQAv9c28pMAvTa9Tx_vokw8hAcq6WhU_aoM8mSlSwEp1JcA" class="btn btn-outline" target="_blank" rel="noopener">View Job Details</a>
+        </div>
+        <div class="career-card">
+          <div class="career-header">
+            <h3>Electronics Engineer</h3>
+            <span class="career-tag">Engineering</span>
+          </div>
+          <p>An early technical hire focused on the design and development of high-speed, FPGA-based data acquisition and control electronics enabling reliable operation of our quantum communication hardware. You will play a key role in bringing critical electronics capabilities in-house.</p>
+          <a href="https://xenquantum.sharepoint.com/:b:/g/IQDsuKzOZYqDT4GV_dxn6Oa7ARqMmCpZfzC1iLXIPKFCmac" class="btn btn-outline" target="_blank" rel="noopener">View Job Details</a>
+        </div>
+      </div>
+      <div class="careers-cta">
+        <p>To apply for any position, fill out <a href="https://forms.cloud.microsoft/e/BzahrDmMv8" target="_blank" rel="noopener">this form</a>. For inquiries, email <a href="mailto:careers@xenquantum.com">careers@xenquantum.com</a>.</p>
+        <p class="careers-privacy-link">By applying, you agree to our <a href="privacy/">Candidate Privacy Notice</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-container">
+      <div class="footer-left">
+        <img src="../logos/logo_2.png" alt="Xen Quantum" class="footer-logo">
+        <span>&copy; 2026 Xen Quantum Ltd. All rights reserved.</span>
+      </div>
+      <div class="footer-right">
+        <a href="../#about">About</a>
+        <a href="../#technology">Technology</a>
+        <a href="./">Careers</a>
+        <a href="../#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
 </html>
