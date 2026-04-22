@@ -632,6 +632,44 @@ section {
   gap: 24px;
 }
 
+.news-grid--stacked {
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+.news-grid--stacked .news-card {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  padding: 24px 32px;
+}
+.news-grid--stacked .news-date {
+  flex-shrink: 0;
+  min-width: 80px;
+  margin-bottom: 0;
+}
+.news-grid--stacked .news-card h3 {
+  flex-shrink: 0;
+  min-width: 240px;
+  margin-bottom: 0;
+}
+.news-grid--stacked .news-card p {
+  flex: 1;
+  margin-bottom: 0;
+}
+.news-grid--stacked .news-link {
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .news-grid--stacked .news-card {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .news-grid--stacked .news-card h3 {
+    min-width: 0;
+  }
+}
+
 .news-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -681,6 +719,11 @@ section {
 #contact .section-intro {
   margin-left: auto;
   margin-right: auto;
+}
+
+#contact-info {
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 
 .contact-links {
@@ -759,6 +802,27 @@ section {
   display: block;
   width: 100%;
 }
+.map-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  height: 280px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: 14px;
+  font-family: var(--font);
+  transition: border-color var(--transition), color var(--transition);
+}
+.map-placeholder:hover {
+  border-color: var(--border-accent);
+  color: var(--text);
+}
 .location-link {
   display: inline-block;
   color: var(--accent);
@@ -829,7 +893,15 @@ footer {
 /* Page hero — used on standalone pages instead of the main hero */
 .page-hero {
   padding-top: calc(var(--nav-height) + 80px);
-  padding-bottom: 40px;
+  padding-bottom: 24px;
+}
+
+#positions {
+  padding-top: 24px;
+}
+
+#all-news {
+  padding-top: 24px;
 }
 
 /* Prose content — long-form text pages like privacy notice */
@@ -837,19 +909,33 @@ footer {
   padding-top: 0;
   padding-bottom: var(--section-padding);
 }
+.prose-section ~ .prose-section,
+.page-hero + .prose-section {
+  margin-top: -32px;
+}
 .prose {
-  max-width: 720px;
+  max-width: var(--container-width);
 }
 .prose h2 {
-  font-size: 22px;
-  margin-top: 40px;
-  margin-bottom: 12px;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  margin-top: 48px;
+  margin-bottom: 16px;
+  color: var(--text);
 }
 .prose p {
   color: var(--text-muted);
   margin-bottom: 16px;
   font-weight: 300;
   line-height: 1.8;
+}
+.prose a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: opacity var(--transition);
+}
+.prose a:hover {
+  opacity: 0.8;
 }
 .prose ul {
   color: var(--text-muted);

@@ -88,4 +88,24 @@
     window.addEventListener('scroll', highlightNav, { passive: true });
     highlightNav();
   }
+
+  // --- Click-to-load maps ---
+  document.querySelectorAll('.location-map[data-map-src]').forEach(function (container) {
+    var btn = container.querySelector('.map-placeholder');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var iframe = document.createElement('iframe');
+      iframe.src = container.getAttribute('data-map-src');
+      iframe.width = '100%';
+      iframe.height = '280';
+      iframe.style.border = '0';
+      iframe.style.borderRadius = '8px';
+      iframe.allowFullscreen = true;
+      iframe.loading = 'lazy';
+      iframe.referrerPolicy = 'no-referrer-when-downgrade';
+      iframe.title = container.getAttribute('data-map-title') || 'Map';
+      container.innerHTML = '';
+      container.appendChild(iframe);
+    });
+  });
 })();
