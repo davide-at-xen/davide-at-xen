@@ -55,6 +55,12 @@
         a.classList.add('active');
       }
     });
+  } else if (path.indexOf('/contact') === 0 || path.indexOf('contact/') !== -1) {
+    allNavLinks.forEach(function (a) {
+      if (a.textContent.trim() === 'Get in Touch') {
+        a.classList.add('active');
+      }
+    });
   } else {
     // On the main page, highlight based on scroll position
     var sections = document.querySelectorAll('section[id]');

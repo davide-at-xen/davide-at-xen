@@ -144,9 +144,24 @@ h1, h2, h3, h4, h5, h6 {
   color: #ffffff;
 }
 .nav-logo-img {
-  width: 32px;
-  height: 32px;
+  width: 54px;
+  height: 54px;
   object-fit: contain;
+  position: relative;
+  top: -3px;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #ffffff;
+  font-family: var(--font);
+  font-weight: 500;
+  font-size: 18px;
+  text-decoration: none;
+  flex-shrink: 0;
+  letter-spacing: 0.01em;
 }
 
 .nav-links {
@@ -251,8 +266,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-logo {
-  width: 280px;
-  height: 280px;
+  width: 360px;
+  height: 360px;
   margin: 0 auto 40px;
   object-fit: contain;
   opacity: 0.9;
@@ -705,6 +720,63 @@ section {
   border-color: var(--border-accent);
 }
 
+/* --- Locations --- */
+.locations-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  margin-top: 48px;
+}
+.location-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  transition: border-color var(--transition);
+}
+.location-card:hover {
+  border-color: var(--border-accent);
+}
+.location-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+.location-address {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+.location-map {
+  margin-bottom: 16px;
+  border-radius: 8px;
+  overflow: hidden;
+  line-height: 0;
+}
+.location-map iframe {
+  display: block;
+  width: 100%;
+}
+.location-link {
+  display: inline-block;
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: opacity var(--transition);
+}
+.location-link:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .locations-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* --- Footer --- */
 footer {
   margin-top: auto;
@@ -728,10 +800,12 @@ footer {
   color: var(--text-dim);
 }
 .footer-logo {
-  width: 24px;
-  height: 24px;
+  width: 26px;
+  height: 26px;
   object-fit: contain;
   opacity: 0.6;
+  position: relative;
+  top: -2px;
 }
 
 .footer-right {
@@ -881,8 +955,8 @@ footer {
   }
 
   .hero-logo {
-    width: 200px;
-    height: 200px;
+    width: 240px;
+    height: 240px;
     margin-bottom: 28px;
   }
 
