@@ -160,7 +160,7 @@
     var needsDraw = true;
     var CONNECT_DIST = 170;
     var HOVER_RADIUS = 130;
-    var NODE_COUNT = 100;
+    var NODE_COUNT = 120;
 
     // Colors
     var IDLE_NODE = 'rgba(255, 255, 255, 0.15)';
@@ -184,6 +184,38 @@
       var pad = 20;
       var usableW = w - pad * 2;
       var usableH = h - pad * 2;
+      var exclPad = 5; // tight padding around excluded elements
+
+      // Build exclusion zones from hero content elements
+      var exclZones = [];
+      var logoEl = document.querySelector('.hero-logo');
+      if (logoEl) {
+        var lr = logoEl.getBoundingClientRect();
+        exclZones.push({
+          x1: lr.left - rect.left - exclPad,
+          y1: lr.top - rect.top - exclPad,
+          x2: lr.right - rect.left + exclPad,
+          y2: lr.bottom - rect.top + exclPad
+        });
+      }
+      var textEls = document.querySelectorAll('#hero h1, .hero-subtitle, .hero-actions');
+      for (var t = 0; t < textEls.length; t++) {
+        var tr = textEls[t].getBoundingClientRect();
+        exclZones.push({
+          x1: tr.left - rect.left - exclPad,
+          y1: tr.top - rect.top - exclPad,
+          x2: tr.right - rect.left + exclPad,
+          y2: tr.bottom - rect.top + exclPad
+        });
+      }
+
+      function inExclusion(x, y) {
+        for (var z = 0; z < exclZones.length; z++) {
+          var zone = exclZones[z];
+          if (x >= zone.x1 && x <= zone.x2 && y >= zone.y1 && y <= zone.y2) return true;
+        }
+        return false;
+      }
 
       // Grid-based placement with jitter for uniform distribution
       var area = usableW * usableH;
@@ -204,6 +236,8 @@
           // Clamp within bounds
           x = Math.max(pad, Math.min(w - pad, x));
           y = Math.max(pad, Math.min(h - pad, y));
+          // Skip if inside any exclusion zone
+          if (inExclusion(x, y)) continue;
           nodes.push({
             x: x,
             y: y,
