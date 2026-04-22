@@ -14,9 +14,6 @@
 
   <!-- Styles -->
   <link href="style.css" rel="stylesheet">
-
-  <!-- Preload hero logo -->
-  <link rel="preload" href="logos/logo_2-medium.webp" as="image" type="image/webp">
 </head>
 <body>
 
@@ -53,10 +50,11 @@
   <section id="hero">
     <div class="hero-glow hero-glow--1"></div>
     <div class="hero-glow hero-glow--2"></div>
+    <canvas id="network-canvas"></canvas>
     <div class="container hero-content">
       <picture>
         <source srcset="logos/logo_2-medium.webp" type="image/webp">
-        <img src="logos/logo_2-medium.png" alt="Xen Quantum" class="hero-logo" width="360" height="295">
+        <img src="logos/logo_2-medium.png" alt="Xen Quantum" class="hero-logo" width="320" height="262">
       </picture>
       <h1>Everlasting communication<br>security at scale</h1>
       <p class="hero-subtitle">We are developing silicon-based quantum communication modules to secure the world's most critical networks — today and against the threats of tomorrow.</p>

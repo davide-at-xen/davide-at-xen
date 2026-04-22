@@ -147,4 +147,236 @@
       container.appendChild(iframe);
     });
   });
+
+  // --- Interactive Node Network (hero canvas) ---
+  var canvas = document.getElementById('network-canvas');
+  if (canvas) {
+    var ctx = canvas.getContext('2d');
+    var dpr = window.devicePixelRatio || 1;
+    var nodes = [];
+    var edges = [];
+    var mouseX = -9999;
+    var mouseY = -9999;
+    var needsDraw = true;
+    var CONNECT_DIST = 170;
+    var HOVER_RADIUS = 130;
+    var NODE_COUNT = 100;
+
+    // Colors
+    var IDLE_NODE = 'rgba(255, 255, 255, 0.15)';
+    var IDLE_EDGE = 'rgba(255, 255, 255, 0.05)';
+    var ACTIVE_NODE = '#EF6D3D';
+    var ACTIVE_EDGE = 'rgba(239, 109, 61, 0.3)';
+    var ACTIVE_GLOW = 'rgba(239, 109, 61, 0.4)';
+
+    function initCanvas() {
+      var rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      return rect;
+    }
+
+    function generateNodes() {
+      var rect = canvas.getBoundingClientRect();
+      var w = rect.width;
+      var h = rect.height;
+      var pad = 20;
+      var usableW = w - pad * 2;
+      var usableH = h - pad * 2;
+
+      // Grid-based placement with jitter for uniform distribution
+      var area = usableW * usableH;
+      var cellSize = Math.sqrt(area / NODE_COUNT);
+      var cols = Math.round(usableW / cellSize);
+      var rows = Math.round(usableH / cellSize);
+      var spacingX = usableW / cols;
+      var spacingY = usableH / rows;
+      var jitterX = spacingX * 0.4;
+      var jitterY = spacingY * 0.4;
+
+      nodes = [];
+      for (var row = 0; row < rows; row++) {
+        for (var col = 0; col < cols; col++) {
+          if (nodes.length >= NODE_COUNT) break;
+          var x = pad + spacingX * (col + 0.5) + (Math.random() - 0.5) * 2 * jitterX;
+          var y = pad + spacingY * (row + 0.5) + (Math.random() - 0.5) * 2 * jitterY;
+          // Clamp within bounds
+          x = Math.max(pad, Math.min(w - pad, x));
+          y = Math.max(pad, Math.min(h - pad, y));
+          nodes.push({
+            x: x,
+            y: y,
+            r: 2 + Math.random() * 1.5
+          });
+        }
+      }
+      computeEdges();
+    }
+
+    function computeEdges() {
+      edges = [];
+      // Count connections per node
+      var connCount = new Array(nodes.length);
+      for (var i = 0; i < nodes.length; i++) connCount[i] = 0;
+
+      // Build candidate edges sorted by distance (shortest first)
+      var candidates = [];
+      for (var i = 0; i < nodes.length; i++) {
+        for (var j = i + 1; j < nodes.length; j++) {
+          var dx = nodes[i].x - nodes[j].x;
+          var dy = nodes[i].y - nodes[j].y;
+          var dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < CONNECT_DIST) {
+            candidates.push({ a: i, b: j, dist: dist });
+          }
+        }
+      }
+      candidates.sort(function (a, b) { return a.dist - b.dist; });
+
+      // Add edges, respecting max 4 connections per node
+      for (var c = 0; c < candidates.length; c++) {
+        var e = candidates[c];
+        if (connCount[e.a] < 4 && connCount[e.b] < 4) {
+          edges.push(e);
+          connCount[e.a]++;
+          connCount[e.b]++;
+        }
+      }
+    }
+
+    function draw() {
+      var rect = canvas.getBoundingClientRect();
+      var w = rect.width;
+      var h = rect.height;
+
+      ctx.clearRect(0, 0, w, h);
+
+      // Determine active nodes (near mouse)
+      var activeSet = {};
+      for (var i = 0; i < nodes.length; i++) {
+        var dx = nodes[i].x - mouseX;
+        var dy = nodes[i].y - mouseY;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < HOVER_RADIUS) {
+          activeSet[i] = 1 - (dist / HOVER_RADIUS); // intensity 0-1
+        }
+      }
+
+      // Draw edges
+      for (var e = 0; e < edges.length; e++) {
+        var edge = edges[e];
+        var aActive = activeSet[edge.a];
+        var bActive = activeSet[edge.b];
+        var edgeActive = aActive !== undefined || bActive !== undefined;
+
+        ctx.beginPath();
+        ctx.moveTo(nodes[edge.a].x, nodes[edge.a].y);
+        ctx.lineTo(nodes[edge.b].x, nodes[edge.b].y);
+
+        if (edgeActive) {
+          var intensity = Math.max(aActive || 0, bActive || 0);
+          ctx.strokeStyle = 'rgba(239, 109, 61, ' + (0.08 + intensity * 0.25) + ')';
+          ctx.lineWidth = 0.5 + intensity * 1;
+        } else {
+          ctx.strokeStyle = IDLE_EDGE;
+          ctx.lineWidth = 0.5;
+        }
+        ctx.stroke();
+      }
+
+      // Draw nodes
+      ctx.shadowColor = 'transparent';
+      for (var n = 0; n < nodes.length; n++) {
+        var node = nodes[n];
+        var active = activeSet[n];
+
+        ctx.beginPath();
+        if (active !== undefined) {
+          ctx.shadowColor = ACTIVE_GLOW;
+          ctx.shadowBlur = 12 * active;
+          ctx.fillStyle = ACTIVE_NODE;
+          ctx.arc(node.x, node.y, node.r + 2 * active, 0, Math.PI * 2);
+        } else {
+          ctx.shadowColor = 'transparent';
+          ctx.shadowBlur = 0;
+          ctx.fillStyle = IDLE_NODE;
+          ctx.arc(node.x, node.y, node.r, 0, Math.PI * 2);
+        }
+        ctx.fill();
+      }
+      ctx.shadowColor = 'transparent';
+      ctx.shadowBlur = 0;
+    }
+
+    function requestDraw() {
+      if (!needsDraw) {
+        needsDraw = true;
+        requestAnimationFrame(function () {
+          needsDraw = false;
+          draw();
+        });
+      }
+    }
+
+    // Mouse events
+    canvas.addEventListener('mousemove', function (e) {
+      var rect = canvas.getBoundingClientRect();
+      mouseX = e.clientX - rect.left;
+      mouseY = e.clientY - rect.top;
+      requestDraw();
+    });
+
+    canvas.addEventListener('mouseleave', function () {
+      mouseX = -9999;
+      mouseY = -9999;
+      requestDraw();
+    });
+
+    // Touch support
+    canvas.addEventListener('touchmove', function (e) {
+      var rect = canvas.getBoundingClientRect();
+      var touch = e.touches[0];
+      mouseX = touch.clientX - rect.left;
+      mouseY = touch.clientY - rect.top;
+      requestDraw();
+    }, { passive: true });
+
+    canvas.addEventListener('touchend', function () {
+      mouseX = -9999;
+      mouseY = -9999;
+      requestDraw();
+    });
+
+    // Init and resize
+    function setup() {
+      initCanvas();
+      generateNodes();
+      needsDraw = false;
+      draw();
+    }
+
+    setup();
+
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () {
+        var rect = canvas.getBoundingClientRect();
+        var oldW = canvas.width / dpr;
+        var oldH = canvas.height / dpr;
+        initCanvas();
+        // Scale node positions proportionally
+        var scaleX = rect.width / oldW;
+        var scaleY = rect.height / oldH;
+        for (var i = 0; i < nodes.length; i++) {
+          nodes[i].x *= scaleX;
+          nodes[i].y *= scaleY;
+        }
+        computeEdges();
+        needsDraw = false;
+        draw();
+      }, 150);
+    }, { passive: true });
+  }
 })();
